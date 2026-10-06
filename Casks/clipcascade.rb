@@ -17,7 +17,10 @@ cask "clipcascade" do
   app "ClipCascade-Apple_macOS(ARM_M-Series)/ClipCascade.app"
 
   caveats <<~EOS
-    ClipCascade is not signed by Apple. On first launch macOS blocks it:
-    open System Settings > Privacy & Security and click "Open Anyway".
+    ClipCascade is not notarized by Apple, so macOS blocks it on first launch.
+    Try to open it once, then System Settings > Privacy & Security, scroll to
+    the bottom and click "Open Anyway". If that button never shows up (or macOS
+    says the app is damaged), remove the quarantine flag instead:
+      xattr -dr com.apple.quarantine /Applications/ClipCascade.app
   EOS
 end
